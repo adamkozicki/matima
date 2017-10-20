@@ -1,0 +1,25 @@
+<div class="container">
+	<h1>Albumy</h1>
+	<p><a href="/"><span class="glyphicon glyphicon-home"></span> Strona główna</a></p>
+</div>
+<div class="container">
+	<!-- if galleries -->
+	{{#if galleries}}
+		{{#each galleries}}
+		<h2>
+			<a href="{{galleryUrl galleryReference}}"> {{name}}</a>
+			<div class="pull-right text-muted">{{date eventDate format='D.MM.Y'}}</div>
+		</h2>
+		<div class="row gallery-images">
+				{{#if heroImage}}
+				<div class="col-sm-4 col-md-4 gallery-image">
+					<img src="{{imageUrl galleryReference heroImage width='400' height='400'}}" class="img-rounded">
+				</div>
+				{{/if}}
+		</div>
+		{{/each}}
+	{{else}}
+	<!-- else -->
+	<h3 class="text-muted">There are no image galleries yet.</h3>
+	{{/if}}
+</div>

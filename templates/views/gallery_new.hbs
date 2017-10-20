@@ -1,0 +1,61 @@
+
+<div class="container">
+    <div class="page-header">
+      <h1>{{name}} <small><a href="/galeria">Galeria</a></small></h1>
+      <p><a href="/galeria"><span class="glyphicon glyphicon-arrow-left"></span> Powrót do albumów || </a><a href="/"><span class="glyphicon glyphicon-home"></span> Strona główna</a></p>
+  </div>
+
+    <form id="reclamation" action="/gallery_new" method="POST">
+
+        <div class="row-reclamation row">
+            <div class="col-md-12">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                            <label for="albumName">Nazwa albumu</label>
+                            <input type="text" class="form-control" id="albumName" value="{{form.albumName}}" name= "albumName" placeholder="Nazwa albumu" autofocus required>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                            <label for="eventDate">Data wydarzenia</label>
+                            <input type="date" class="form-control" id="eventDate" value="{{form.eventDate}}" name="eventDate" placeholder="Data wydarzenia" required>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                            <label for="client">Klient</label>
+                            <input type="e-mail" class="form-control" id="client" value="{{form.client}}" name="client" placeholder="Klient" required>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                            <label for="guest">Gość</label>
+                            <input type="text" class="form-control" id="agentEmail" value="{{form.guest}}" name="guest" placeholder="Gość" required>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                            <label for="gallery">Galeria</label>
+                            <input type="text" class="form-control" id="gallery" value="{{form.gallery}}" name="gallery" placeholder="Galeria" required>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                            <label for="imageHero">Zdjęcie główne</label>
+                            <input type="text" class="form-control" id="imageHero" value="{{form.imageHero}}" name="imageHero" placeholder="Nazwa zdjęcia" required>
+                            </div>
+                        </div>                                               
+                    </div>
+
+                    <hr>
+                    <div class="pull-right">
+                        <button id="sendReclamation" type="submit" class="btn btn-success">Zapisz album</button>
+                    </div>	
+                </div>
+            </div>
+        </div>
+    </form>
+    
+</div>

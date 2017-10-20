@@ -1,0 +1,181 @@
+
+{{#if gallery}}
+	{{#each gallery}}
+	<div class="container">
+		<div class="page-header">
+		  <h1>{{name}} <small><a href="/galeria">Galeria</a></small></h1>
+		  <p><a href="/galeria"><span class="glyphicon glyphicon-arrow-left"></span> Powrót do albumów || </a><a href="/"><span class="glyphicon glyphicon-home"></span> Strona główna</a></p>
+
+		</div>
+	{{/each}}
+
+	{{else}}
+	<div class="container">
+		<div class="page-header">
+		  <h1><a href="/galeria">Galeria</a></h1>
+		  <p><a href="/galeria"><span class="glyphicon glyphicon-arrow-left"></span> Powrót do albumów || </a><a href="/"><span class="glyphicon glyphicon-home"></span> Strona główna</a></p>
+
+		</div>
+		<!-- else -->
+		<h3 class="text-muted">Galeria nie istnieje.</h3>
+{{/if}}
+
+		<div class="row gallery-images col-sm-12 col-md-12">
+			<div class="my-gallery">
+			{{#if imagesInfo}}
+				{{#each imagesInfo}}
+				    <figure class="thumbnail" itemprop="associatedMedia">
+				        <a href="{{imageUrl galleryReference title}}" itemprop="contentUrl" data-size="{{width}}x{{height}}">
+				            <img src="{{imageUrl galleryReference title}}"  itemprop="thumbnail" alt="Image description" />
+				        </a>
+				        {{!-- <figcaption itemprop="caption description">Image caption</figcaption> --}}
+			        	<div class="caption">
+
+			        		{{{checkIfClient2 isClient state id galleryReference title}}}
+{{!-- 			        		<p>{{state}}</p>
+				        	 <form id="imageStatus" method="POST" action="/image_changeStatus">
+			                    <input class="hidden" type="text" name="status" value="{{id}}">
+							</form>
+						 	
+							<form id="imageDelete" method="POST" action="/image_delete">
+								<input class="hidden" type="text" name="delete" value="{{id}}">
+				                <input class="hidden" type="text" name="pathToDelete" value="{{galleryReference}}/{{title}}">
+			        		</form> --}}
+	                			
+						</div>
+				    </figure>
+				{{/each}}
+			{{else}}
+			</div>
+		</div>
+
+	
+	<!-- else -->
+		<h3 class="text-muted">Nie ma zdjęć w tej galerii.</h3>
+	{{/if}}
+</div> 
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element, as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
+        <div class="pswp__container">
+            <!-- don't modify these 3 pswp__item elements, data is added later on -->
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Zamknij (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Udostępnij"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Pełny ekran"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Powiększ/zmiejsz"></button>
+
+
+				{{{checkIfClient user}}}
+
+{{!--                 <button id="changeStatusImage" type="submit" form="imageStatus" class="pswp__button userSettings" title="Zmień status"><span class="glyphicon glyphicon-cog"></span></button>
+
+				<button id="removeImage" type="submit" form="imageDelete" class="pswp__button userSettings remove" title="Usuń zdjęcie"><span class="glyphicon glyphicon-remove-sign"></span></button> --}}
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+          </div>
+
+        </div>
+
+</div>
+
+<script type="text/javascript">
+
+//window.onload = function() {
+
+// 	var photos = document.querySelectorAll('#watch'),
+// 		photos2 = [];
+
+
+// 	for(i = 0; i<photos.length; i++) {
+// 		photos2.push({ src: photos[i].attributes[1].value, w: photos[i].attributes[4].value, h: photos[i].attributes[5].value });
+// 	}
+
+// 	// console.log(photos2[0].src)
+
+// 	var openPhotoSwipe = function(index) {
+// 	    var pswpElement = document.querySelectorAll('.pswp')[0];
+
+
+// 	    // build items array
+// 	    var items = photos2;
+
+	    
+// 	    // define options (if needed)
+// 	    var options = {
+// 	             // history & focus options are disabled on CodePen        
+// 	        history: false,
+// 	        focus: true,
+
+// 	        showAnimationDuration: 1,
+// 	        hideAnimationDuration: 1
+	        
+// 	    };
+	    
+// 	    var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+// 	    gallery.init();
+// 	};
+
+
+// for(i = 0; i<photos.length; i++){
+// 	document.querySelectorAll('#watch')[i].addEventListener('click', function(e){
+// 		console.log(e.target.src)
+// 		openPhotoSwipe();
+// 	})
+// }
+
+// }	
+
+
+
+</script>
+
